@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweden Job Market Intelligence</title>
+
+  <link rel="stylesheet" href="/dashboard/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js" defer></script>
+  <script src="/dashboard/script.js" defer></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">SE</span>
+        <div>
+          <strong>Sweden Jobs</strong>
+          <small>Intelligence Platform</small>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#overview" class="nav-link active">
+          ◫ &nbsp; Overview
+        </a>
+        <a href="#analytics" class="nav-link">
+          ◴ &nbsp; Analytics
+        </a>
+        <a href="#jobs" class="nav-link">
+          ▤ &nbsp; Job Listings
+        </a>
+        <a href="#about" class="nav-link">
+          ⓘ &nbsp; About Project
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        Portfolio Project<br>
+        Built with Python & JavaScript
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">DATA ANALYTICS PROJECT</p>
+          <h1>Job Market Dashboard</h1>
+          <p class="subtitle">
+            Explore data engineering opportunities across Sweden.
+          </p>
+        </div>
+
+        <label for="csvFile" class="upload-btn">
+          + Upload CSV
+        </label>
+        <input
+          type="file"
+          id="csvFile"
+          accept=".csv,text/csv"
+          hidden
+        >
+      </header>
+
+      <p id="status" class="status" role="status">
+        Loading job data...
+      </p>
+
+      <!-- Overview -->
+      <section id="overview">
+        <div class="section-heading">
+          <h2>Market Overview</h2>
+          <span id="dataLabel" class="section-label">
+            Dataset overview
+          </span>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-icon blue">▣</div>
+            <p>Total Jobs</p>
+            <h3 id="totalJobs">—</h3>
+            <small>Job advertisements</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon purple">▥</div>
+            <p>Companies</p>
+            <h3 id="totalCompanies">—</h3>
+            <small>Identified employers</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon green">◎</div>
+            <p>Cities</p>
+            <h3 id="totalCities">—</h3>
+            <small>Swedish municipalities</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon orange">▤</div>
+            <p>Job Roles</p>
+            <h3 id="totalRoles">—</h3>
+            <small>Distinct job titles</small>
+          </article>
+        </div>
+      </section>
+
+      <!-- Analytics -->
+      <section id="analytics">
+        <p id="lastUpdated">
+            Last data collection: Loading...
+        </p>
+        <div class="section-heading">
+          <h2>Job Market Analytics</h2>
+          <span class="section-label">Interactive charts</span>
+        </div>
+
+        <div class="charts-grid">
+          <article class="panel">
+            <h3>Top Cities</h3>
+            <p>Job advertisements by location</p>
+            <div class="chart-container">
+              <canvas id="cityChart"></canvas>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Top Employers</h3>
+            <p>Companies with the most listings</p>
+            <div class="chart-container">
+              <canvas id="companyChart"></canvas>
+            </div>
+          </article>
+
+          <article class="panel wide">
+            <h3>Most Common Job Roles</h3>
+            <p>Frequency of advertised job titles</p>
+            <div class="chart-container">
+              <canvas id="roleChart"></canvas>
+            </div>
+          </article>
+          <article class="panel wide">
+            <h3>Top Technical Skills</h3>
+            <p>Most frequently mentioned skills in job descriptions</p>
+            <div class="chart-container">
+              <canvas id="skillsChart"></canvas>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Job listings -->
+      <section id="jobs">
+        <div class="section-heading">
+          <h2>Explore Job Listings</h2>
+          <span id="resultCount" class="section-label">
+            0 results
+          </span>
+        </div>
+
+        <article class="panel">
+          <div class="filters">
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Search jobs, companies or cities..."
+              aria-label="Search job listings"
+            >
+
+            <select id="cityFilter" aria-label="Filter by city">
+              <option value="">All Cities</option>
+            </select>
+
+            <select id="companyFilter" aria-label="Filter by company">
+              <option value="">All Companies</option>
+            </select>
+
+            <button id="clearFilters" class="clear-btn">
+              Clear
+            </button>
+            <button id="exportCSV" type="button" class="clear-btn">
+              Export CSV
+            </button>
+          <a
+            href="/api/report/download"
+            class="clear-btn"
+            download
+          >
+            Download PDF Report
+          </a>
+          </div>
+          <p id="resultsCount" aria-live="polite">
+            Loading job results...
+          </p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Job Title</th>
+                  <th>Company</th>
+                  <th>City</th>
+                  <th>Job ID</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="jobsTable">
+                <tr>
+                  <td colspan="5">No data loaded</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p id="tableNote" class="table-note"></p>
+        </article>
+      </section>
+
+
+      <!-- Job Details Popup -->
+      <dialog id="jobModal" class="job-modal">
+        <div class="modal-header">
+          <h2 id="modalTitle">Job Details</h2>
+          <button
+            id="closeModal"
+            class="modal-close"
+            type="button"
+            aria-label="Close job details"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-content">
+          <p><strong>Company:</strong> <span id="modalCompany"></span></p>
+          <p><strong>City:</strong> <span id="modalCity"></span></p>
+          <p><strong>Job ID:</strong> <span id="modalJobId"></span></p>
+
+          <h3>Job Description</h3>
+          <div class="language-buttons">
+            <button id="showSwedish" type="button">🇸🇪 Swedish</button>
+            <button id="showEnglish" type="button">🇬🇧 English</button>
+          </div>
+          <p id="modalDescription"></p>
+        </div>
+      </dialog>
+
+
+      <!-- About -->
+      <section id="about">
+        <article class="about-panel">
+          <h2>About This Project</h2>
+          <p>
+            The Sweden Job Market Intelligence Platform is
+            a personal data analytics project that explores
+            Swedish job advertisements using data retrieved
+            from the JobTech API.
+          </p>
+          <p>
+            Python and Pandas handle data collection and
+            cleaning. JavaScript and Chart.js power the
+            interactive dashboard.
+          </p>
+          <p>
+            The dataset focuses on advertisements matching
+            the search term "data engineer". Results reflect
+            the collected sample, not the entire Swedish
+            labour market.
+          </p>
+        </article>
+      </section>
+
+      <footer>
+        Sweden Job Market Intelligence Platform
+        · Personal Portfolio Project
+      </footer>
+
+    </main>
+  </div>
+</body>
+</html>

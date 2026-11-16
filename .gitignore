@@ -1,0 +1,17 @@
+﻿.venv/
+.venv-1/
+__pycache__/
+*.pyc
+*.db
+.env
+.env.*
+*.log
+data/*.pdf
+src_backup.txt
+
+# Generated job datasets
+data/*.csv
+sweden_jobs.csv
+
+# Local collection timestamp
+data/last_updated.txt
