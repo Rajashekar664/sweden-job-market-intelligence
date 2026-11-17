@@ -300,6 +300,12 @@ def translate_job_description(job_id):
         if translated:
             print("Using saved English translation!")
         else:
+            import os
+
+            if os.environ.get("RENDER") == "true":
+                return jsonify({
+                    "error": "English translation is not cached for this job."
+                }), 503
             print("Translating description with Argos...")
 
             translated = argostranslate.translate.translate(
