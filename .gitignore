@@ -15,3 +15,5 @@ sweden_jobs.csv
 
 # Local collection timestamp
 data/last_updated.txt
+
+.venv-test/

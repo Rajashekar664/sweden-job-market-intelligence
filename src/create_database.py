@@ -93,10 +93,16 @@ with sqlite3.connect(DB_FILE) as conn:
     ]
 
     if "job_description" not in columns:
+        
         conn.execute("""
             ALTER TABLE jobs
             ADD COLUMN job_description TEXT
         """)
+    if "english_description" not in columns:
+        conn.execute("""
+           ALTER TABLE jobs
+           ADD COLUMN english_description TEXT
+       """)
 
     for _, job in df.iterrows():
         conn.execute("""
