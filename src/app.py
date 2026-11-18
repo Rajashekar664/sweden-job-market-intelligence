@@ -1,6 +1,5 @@
 import sqlite3
 from pathlib import Path
-import argostranslate.translate
 from flask import Flask, jsonify, send_from_directory
 
 app = Flask(__name__)
@@ -307,7 +306,9 @@ def translate_job_description(job_id):
                     "error": "English translation is not cached for this job."
                 }), 503
             print("Translating description with Argos...")
-
+            
+            import argostranslate.translate
+            
             translated = argostranslate.translate.translate(
                 description,
                 "sv",
