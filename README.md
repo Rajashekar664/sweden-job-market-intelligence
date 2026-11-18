@@ -6,7 +6,7 @@ The platform uses job advertisement data from Sweden's JobTech API to explore hi
 
 ### Live Demo
 
-🌐 **[View Live Dashboard](https://sweden-job-market-intelligence.onrender.com/)**
+🌐 **[View Live Dashboard](https://sweden-job-market-intelligence.pothularajasekhar72.workers.dev/)**
 
 📂 **[GitHub Repository](https://github.com/Rajashekar664/sweden-job-market-intelligence)**
 
@@ -197,6 +197,52 @@ http://127.0.0.1:5000/
 
 
 ## Deployment
+
+
+### Static Dashboard Data Updates
+
+The Cloudflare dashboard uses pre-generated JSON files:
+
+- `static-site/data/jobs.json` — Job listings and cached English translations
+- `static-site/data/skills.json` — Technical skills analysis
+- `static-site/data/last-updated.json` — Actual data collection timestamp
+
+The data is generated locally using Python scripts and then published to Cloudflare.
+
+To refresh the dashboard:
+
+1. Fetch the latest job advertisements.
+2. Update the local SQLite database and skills analysis.
+3. Generate and export any missing English translations.
+4. Regenerate the static JSON files.
+5. Upload the updated static website to Cloudflare.
+
+The current static deployment does not update automatically.
+
+
+
+### Hosting Architecture
+
+The Sweden Job Market Intelligence Platform uses two hosting services:
+
+**Cloudflare — Fast Static Dashboard**
+- Hosts the public-facing HTML, CSS, JavaScript, and JSON files.
+- Provides interactive job market analytics, job search, filtering, and saved English translations.
+- Serves the dashboard without Flask server cold starts.
+
+**Render — Full-Stack Application**
+- Hosts the original Flask REST API and SQLite application.
+- Demonstrates backend development and API integration.
+- Uses Render's Free plan, which may sleep after inactivity.
+
+### Live Links
+
+**Fast Dashboard (Cloudflare):**
+https://sweden-job-market-intelligence.pothularajasekhar72.workers.dev/
+
+**Full-Stack Application (Render):**
+https://sweden-job-market-intelligence.onrender.com/
+
 
 The application is deployed on Render using GitHub for version control and automated deployment.
 
