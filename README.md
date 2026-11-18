@@ -349,3 +349,7 @@ Render's Free service may take additional time to respond after a period of inac
 ## Author
 
 Developed as a portfolio project demonstrating Python data engineering, REST API development, relational databases, data visualization, and full-stack application development.
+
+## Collaboration
+
+This project is being developed collaboratively using Github branches and pull request
