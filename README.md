@@ -14,6 +14,12 @@ The platform uses job advertisement data from Sweden's JobTech API to explore hi
 
 > **Note:** The free hosting service may take some time to wake up after inactivity.
 
+
+## Dashboard Preview
+
+![Sweden Job Market Intelligence Dashboard](screenshots/dashboard.png)
+
+
 ## Features
 
 - **Job Market Dashboard:** Interactive statistics and visualizations of job advertisements.
