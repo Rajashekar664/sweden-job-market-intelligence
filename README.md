@@ -246,8 +246,7 @@ https://sweden-job-market-intelligence.onrender.com/
 
 The application is deployed on Render using GitHub for version control and automated deployment.
 
-**Live Application:**  
-https://sweden-job-market-intelligence.onrender.com/
+
 
 ### Render Configuration
 
