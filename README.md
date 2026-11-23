@@ -349,3 +349,31 @@ Render's Free service may take additional time to respond after a period of inac
 ## Author
 
 Developed as a portfolio project demonstrating Python data engineering, REST API development, relational databases, data visualization, and full-stack application development.
+
+## Collaboration
+
+This project is being developed collaboratively using Github branches and pull request
+
+
+## Team Contributions
+
+This project is developed collaboratively by two developers, with responsibilities divided equally.
+
+### Saisri Yenuganti — Backend & Data Engineering 
+- JobTech API integration and job data collection
+- Data preprocessing and SQLite database management
+- Flask backend and API development
+- Swedish-to-English translation functionality
+- Backend deployment and maintenance
+
+### Rajasekhar Pothula— Frontend & Data Analytics 
+- Interactive dashboard development using HTML, CSS, and JavaScript
+- Chart.js visualizations and skills analysis
+- Job search, filtering, and job detail features
+- Static dashboard optimization
+- Frontend deployment and user experience improvements
+
+### Shared Responsibilities
+- GitHub collaboration and Pull Requests
+- Code reviews, testing, and debugging
+- Documentation and ongoing project improvements
