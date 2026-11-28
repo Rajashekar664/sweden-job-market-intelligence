@@ -270,6 +270,11 @@ def get_job_details(job_id):
 
 @app.route("/api/jobs/<job_id>/translate", methods=["GET"])
 def translate_job_description(job_id):
+    if not DB_FILE.exists():
+        return jsonify({
+            "error": "Database not found"
+        }), 404
+
     with sqlite3.connect(DB_FILE) as conn:
         row = conn.execute(
             "SELECT job_description FROM jobs WHERE job_id = ?",
