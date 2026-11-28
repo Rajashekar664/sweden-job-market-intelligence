@@ -291,6 +291,19 @@ The application is deployed on Render using GitHub for version control and autom
 | `/api/last-updated` | Last data collection timestamp |
 | `/api/report/download` | Download the generated PDF report |
 
+## Testing
+
+The Flask REST API is covered by automated tests written with **pytest**. The tests run against a small temporary SQLite database, so they do not need the real job data or an internet connection.
+
+Run the tests locally:
+
+```bash
+python -m pip install -r requirements-dev.txt
+python -m pytest -v
+```
+
+The tests also run automatically on GitHub Actions for every push to `main` and every pull request (see `.github/workflows/tests.yml`).
+
 ## Data Source and Scope
 
 Job advertisements are collected from Sweden's JobTech API.
@@ -341,7 +354,6 @@ Render's Free service may take additional time to respond after a period of inac
 
 - Automated data collection and translation updates
 - Persistent database storage
-- Automated testing
 - Historical job market trend analysis
 - Additional dashboard improvements
 
@@ -376,4 +388,4 @@ This project is developed collaboratively by two developers, with responsibiliti
 ### Shared Responsibilities
 - GitHub collaboration and Pull Requests
 - Code reviews, testing, and debugging
-- Documentation and ongoing project improvements
+- Documentation and ongoing project improvements
